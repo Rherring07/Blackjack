@@ -1,0 +1,868 @@
+/*  */
+
+
+
+:root {
+    --player-right: 50%;
+    --dealer-right: 50%;
+    --card-width: clamp(20px, 14.9vw, 163px);
+    /* 163px */
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+body * {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+button {
+    border: none;
+}
+
+
+
+
+
+
+/* *************************************
+//              BET LAYOUT
+// *********************************** */ 
+
+
+/* *********Game Container************* */
+.bet-container-wrapper {
+    object-fit:cover;
+    background: white;
+    resize: both;
+    overflow: auto;
+    max-width: 1096px;
+    height: 100vh;
+}
+.bet-container {
+    object-fit:cover;
+    position: relative;
+    padding-bottom: 75%;
+    width: 100%;
+    max-height: 822px;
+    background-image: url("images/blackjack-background.jpg");
+    background-size: contain;
+}
+
+/* *********Bet Container************* */
+.bet {
+    position: absolute;
+    bottom: 0%;
+    width: 60%;
+    height: 50%;
+    margin-left: min(4%, 4vw);
+
+
+    display: grid;
+    grid-template-rows: 1fr 1fr 6.3fr;
+    grid-template-columns: 1fr 2fr;
+}
+
+.chips {
+    background: rgb(17, 53, 79);
+    border: 2px groove grey;
+    border-top: none;
+    grid-column: 1/4;
+    grid-row: 3/4;
+}
+
+.money-container, .all-in {
+    background: rgb(17, 53, 79);
+    border-left: 2px groove grey;
+    border-right: 2px groove grey;
+    clear: both;
+}
+.money-container {
+    border-top: 2px groove grey;
+}
+.hidden-hero {
+    border-bottom: 2px groove grey;
+    grid-column: 2/4;
+    grid-row: 1/3;
+}
+
+.current-bet {
+    position: absolute;
+    bottom: 47%;
+    left: 50%;
+    color: white;
+    font-size: clamp(.3rem, 5vw, 3rem)
+}
+
+
+/* *********Deal Button************* */
+.deal-button,
+.new-round-button {
+    position: absolute;
+    top: 45%;
+    right: 12.5%;
+    width: 15%;
+    height: 10%;
+    background: linear-gradient(rgb(4, 156, 193), rgb(85, 111, 117));
+    color: white;
+    text-transform: uppercase;
+    font-size: clamp(.5rem, 1.8vw, 2rem);
+    border-radius: min(1vw, 2rem);
+    box-shadow:
+        0 0 2% rgb(0, 57, 131);
+}
+
+.deal-button:hover,
+.new-round-button:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.2);
+}
+
+.deal-button:active,
+.new-round-button:active {
+    transform: translateY(2px);
+  }
+
+/* *********Reset Button************* */
+.reset-bet-button {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 10%;
+    height: 5%;
+    background: linear-gradient(rgb(4, 156, 193), rgb(85, 111, 117));
+    color: white;
+    text-transform: uppercase;
+    font-size: clamp(.5vw, 1.2vw, 1rem);
+    border-radius: min(1vw, 2rem);
+    box-shadow:
+        0 0 1rem rgb(0, 57, 131);
+}
+.reset-bet-button:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.2);
+}
+
+.reset-bet-button:active {
+    transform: translateY(2px);
+  }
+
+
+
+/* *********Bank************* */
+.money-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+    font-size: clamp(1vw, 2.5vw, 2rem);
+    color: white;
+}
+.money {
+    font-weight: bold;
+}
+
+
+/* *********All-in Button************* */
+.all-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.all-in-button {
+    font-size: clamp(1vw, 2.5vw, 1.5rem);
+    text-transform: uppercase;
+    padding: 5% 15%;
+    background: rgb(0, 57, 131);
+    color: white;
+}
+.all-in-button:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.4);
+}
+.all-in-button:active {
+    transform: translateY(2px);
+}
+
+
+/* *********Chips************* */
+.chips {
+    position: relative;
+    z-index: 2;
+    /* display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start; */
+    display: grid; 
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: clamp(1%, 1vw, 1rem);
+    padding-right: clamp(1%, 1vw, 1rem);
+}
+.chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* width: clamp(3vw, 9.5vw, 6.8rem);
+    height: clamp(3vw, 9.5vw, 6.8rem); */
+    height: 90%;
+    width: 90%;
+    
+    color:white;
+
+    font-weight: bold;
+    font-size: clamp(1vw, 2.5vw, 2rem);
+
+    border: min(.3rem, .5vw) dashed white;
+    border-radius: 50%;
+}
+.chip:before,
+.chip:after {
+    content: "";
+    position: absolute;
+    transform: translate(1vw);
+
+    display: block;
+    z-index: -1;
+
+    /* width: clamp(3vw, 8.5vw, 6.2rem);
+    height: clamp(3vw, 8.5vw, 6.2rem); */
+    width: 15%;
+    height: 32%;
+
+    border: min(.3rem, .5vw) dashed white;
+    border-radius: 50%;
+}
+
+.chip:after {
+    transform: translate(.5vw);
+}
+
+.chip2 {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* width: clamp(3vw, 9.5vw, 6.8rem);
+    height: clamp(3vw, 9.5vw, 6.8rem); */
+    width: 10%;
+    height: 13%;
+    
+    color:white;
+
+    font-weight: bold;
+    font-size: clamp(1vw, 2.5vw, 2rem);
+
+    border: min(.3rem, .5vw) dashed white;
+    border-radius: 50%;
+}
+
+.chip2.white {
+    bottom: 20.8%;
+    left: 5.3%;
+}
+.chip2.red {
+    bottom: 20.8%;
+    left: 16.7%;
+}
+.chip2.green {
+    bottom: 20.8%;
+    left: 28.5%; 
+}
+.chip2.orange {
+    bottom: 20.8%;
+    left: 39.7%;
+}
+.chip2.black {
+    bottom: 20.8%;
+    left: 51.2%;
+}
+
+.chip2.pink {
+    bottom: 6%;
+    left: 5.3%;
+}
+.chip2.purple {
+    bottom: 6%;
+    left: 16.7%;
+}
+.chip2.yellow {
+    bottom: 6%;
+    left: 28.5%;
+}
+.chip2.light-blue {
+    bottom: 6%;
+    left: 39.7%;
+}
+.chip2.brown {
+    bottom: 6%;
+    left: 51.2%;
+}
+/* *********Chip Colors************* */
+.chip2.white,
+.white,
+.white:before,
+.white:after {
+    color: rgb(45, 91, 138);
+    background-color: #fff;
+    border: min(.3rem, .5vw) dashed rgb(45, 91, 138);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(45, 91, 138) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem) #fff inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem) rgb(45, 91, 138) inset;
+}
+
+.red,
+.red:before,
+.red:after {
+    background-color: rgb(179, 18, 47);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem)rgb(135, 13, 33) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem) rgb(179, 18, 47) inset,
+    0 0 0 clamp(.2rem, 1vw, .6rem) white inset;
+}
+
+.green,
+.green:before,
+.green:after {
+    background-color: rgb(0, 165, 52);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(2, 117, 34) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(0, 165, 52) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.orange,
+.orange:before,
+.orange:after {
+    background-color: rgb(247, 149, 62);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(222, 84, 46) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(247, 149, 62) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.black,
+.black:before,
+.black:after {
+    background-color: rgb(40, 51, 64);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(21, 25, 29) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(40, 51, 64) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.pink,
+.pink:before,
+.pink:after {
+    background-color: rgb(207, 32, 101);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(150, 22, 71) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(207, 32, 101) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.purple,
+.purple:before,
+.purple:after {
+    background-color: rgb(136, 87, 174);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(99, 64, 121) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(136, 87, 174) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.yellow,
+.yellow:before,
+.yellow:after {
+    background-color: rgb(248, 203, 5);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem)  rgb(175, 120, 10) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(248, 203, 5) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.light-blue,
+.light-blue:before,
+.light-blue:after {
+    background-color: rgb(57, 118, 180);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(45, 91, 138) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(57, 118, 180) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.brown,
+.brown:before,
+.brown:after {
+    background-color: rgb(150, 63, 13);
+    box-shadow: 
+    0 0 0 clamp(.1rem, .5vw, .3rem) rgb(65, 27, 20) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  rgb(150, 63, 13) inset, 
+    0 0 0 clamp(.2rem, 1vw, .6rem)  white inset;
+}
+
+.chip,
+.chip:before,
+.chip:after {
+    box-shadow:
+    0 0 10px black;
+}
+
+/* *********Chip Hover************* */
+.chip2:hover {
+    cursor: pointer;
+    box-shadow: 
+        inset 0 0 0 7px rgb(17, 53, 79, .9),
+        0 0 15px #fff;
+}
+
+.moveToCenter {
+    animation: myAnimCenter .5s forwards;
+}
+@keyframes myAnimCenter {
+    100% {
+        left: 38%;
+        bottom: 44%;
+    }
+}
+
+.moveBackWhite{
+    animation: myAnimWhite 0.5s forwards;
+}
+@keyframes myAnimWhite {
+    100% {
+        left: 5.3%;
+        bottom: 20.8%;
+    }
+}
+
+.moveBackRed {
+    animation: myAnimRed 0.5s forwards;
+}
+@keyframes myAnimRed {
+    100% {
+        left: 16.7%;
+        bottom: 20.8%;
+    }
+}
+
+.moveBackGreen {
+    animation: myAnimGreen 0.5s forwards;
+}
+@keyframes myAnimGreen {
+    100% {
+        left: 28.5%;
+        bottom: 20.8%;
+    }
+}
+
+.moveBackOrange {
+    animation: myAnimOrange 0.5s forwards;
+}
+@keyframes myAnimOrange {
+    100% {
+        left: 39.7%;
+        bottom: 20.8%;
+    }
+}
+
+.moveBackBlack {
+    animation: myAnimBlack 0.5s forwards;
+}
+@keyframes myAnimBlack {
+    100% {
+        left: 51.2%;
+        bottom: 20.8%;
+    }
+}
+
+.moveBackPink {
+    animation: myAnimPink 0.5s forwards;
+}
+@keyframes myAnimPink {
+    100% {
+        left: 5.3%;
+        bottom: 6%;
+    }
+}
+
+.moveBackPurple {
+    animation: myAnimPurple 0.5s forwards;
+}
+@keyframes myAnimPurple {
+    100% {
+        left: 16.7%;
+        bottom: 6%;
+    }
+}
+
+.moveBackYellow {
+    animation: myAnimYellow 0.5s forwards;
+}
+@keyframes myAnimYellow {
+    100% {
+        left: 28.5%;
+        bottom: 6%;
+    }
+}
+
+.moveBackBlue {
+    animation: myAnimBlue 0.5s forwards;
+}
+@keyframes myAnimBlue {
+    100% {
+        left: 39.7%;
+        bottom: 6%;
+    }
+}
+
+.moveBackBrown {
+    animation: myAnimBrown 0.5s forwards;
+}
+@keyframes myAnimBrown {
+    100% {
+        left: 51.2%;
+        bottom: 6%;
+    }
+}
+
+.moveDiv {
+    transform: translateY(90%);
+    transition: all .5s linear;
+}
+.moveChip {
+    transform: translateY(340%);
+    transition: all .5s linear;
+}
+.moveDivBack {
+    transform: translateY(0%);
+    transition: all .5s linear;
+}
+.moveChipBack {
+    transform: translateY(0%);
+    transition: all .5s linear;
+}
+
+
+
+
+
+
+.hidden {
+    display: none!important;
+}
+
+.invisible {
+    visibility: hidden!important;
+}
+
+
+
+
+
+
+
+/* *************************************
+//              GAME LAYOUT
+// *********************************** */ 
+.blackjack {
+    overflow:hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.game-container {
+    height: 100%;
+}
+
+/* *********Buttons************* */
+
+.hit-button,
+.stand-button {
+    position: absolute;
+    top: 45%;
+    width: 15%;
+    height: 10%;
+    background: linear-gradient(rgb(26, 172, 43), rgb(15, 139, 15));
+    color: white;
+    text-transform: uppercase;
+    font-size: clamp(1vw, 2vw, 1.5rem);
+    border-radius: .5rem;
+    box-shadow:
+        0 0 1rem rgb(0, 57, 131);
+    
+}
+
+.hit-button {
+    left: 12.5%;
+}
+.stand-button {
+    right: 12.5%;
+}
+
+.hit-button:hover,
+.stand-button:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 0 50px rgba(0, 0, 0, 0.2);
+}
+
+.hit-button:active,
+.stand-button:active {
+    transform: translateY(2px);
+  }
+
+
+/* ********* Counts ************* */
+.dealerCount,
+.playerCount {
+    position: absolute;
+    right: 24%;
+
+    width: 6vw;
+    max-width: 4rem;
+    height: 6vw;
+    max-height: 4rem;
+
+    border-radius: 50%;
+    background: rgb(0, 217, 0, .9);
+    
+    border:
+        2px solid rgb(0, 57, 131);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dealerCount {
+    top: 19%;
+}
+.playerCount {
+    bottom: 19%;
+}
+
+.count,
+.newRoundCount {
+    padding: 1%; 
+    margin: 0;
+    font-size: clamp(.3rem, 2.2vw, 1.8rem);
+    color: white;
+}
+
+
+
+
+/* ********* player names ************* */
+.dealer-div,
+.player-div {
+    position: absolute;
+    right: 15%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1%;
+    margin-left: 2%;
+}
+
+.dealer-div {
+    top: 18%;
+}
+.player-div {
+    bottom: 18%;
+}
+
+.dealer-name,
+.player-name {
+    color: rgb(0, 217, 0);
+    font-size: clamp(.2rem, 2.7vw, 2rem);
+    text-transform: capitalize;
+}
+/* ********* Cards ************* */
+
+.player-card,
+.dealer-card {
+    width: 15%;
+    position: absolute;
+}
+
+.face-down {
+    background-image: url("images/cardback.gif");
+    border-color: #808080 #000000 #000000 #808080;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 7%;
+    color: #000000;
+    width: var(--card-width);
+    height: calc(1.4 * var(--card-width));
+  }
+  
+/* ********* win divs ************* */
+
+.ribbon {
+
+    --r: clamp(.2rem, 1vw, .5rem);
+    position: absolute;
+
+    height: 6%;
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    box-shadow:
+    0 0 5px black;
+
+    clip-path: polygon(
+        0% 0%, 100% 0%,
+        calc(100% - var(--r)) 50%, 100% 100%,
+        0% 100%, var(--r) 50%);
+    
+    border: 2px groove grey;
+}
+
+.ribbon h4 {
+    font-size: clamp(.2rem, 2.7vw, 2rem);
+    font-weight: bold;
+}
+
+.player-container .win,
+.player-container .win-blackjack,
+.player-container .bust {
+    bottom: 18%;
+    right: 46%;
+    z-index: 100;
+    background: rgb(30, 127, 162);
+}
+
+.dealer-container .win,
+.dealer-container .win-blackjack,
+.dealer-container .bust {
+    top: 18%;
+    right: 46%;
+    z-index: 100;
+    background: rgb(244, 21, 58);
+}
+
+.bust {
+    background: rgb(43, 44, 47);
+}
+
+.tie {
+    top: 47%;
+    right: 45%;
+    background: linear-gradient(rgb(26, 172, 43), rgb(15, 139, 15));
+    box-shadow:
+    0 0 1rem rgb(0, 57, 131),
+    0 1rem 1rem black;
+    z-index: 150;
+}
+/* ********* Game Over ************* */
+.game-over-container {
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+
+    background: rgb(21, 25, 29, 0.9);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 300;
+}
+.game-over {
+    height: 50%;
+    width: 50%;
+
+    background: linear-gradient(rgb(85, 111, 117), rgb(18, 95, 122));
+
+    font-size: clamp(.5rem, 6vw, 4rem);
+    color: white;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}
+
+.game-over-button {
+    height: 15%;
+    width: 40%;
+    border-radius: 5%;
+    font-size: clamp(.2rem, 3vw, 2rem);
+    box-shadow:
+        0 0 10% rgb(54, 116, 196);
+}
+.game-over-button:hover {
+    cursor: pointer;
+    color: rgb(18, 95, 122);
+    background: linear-gradient(rgb(255, 255, 255), rgb(29, 116, 148));
+    box-shadow: inset 0 0 0 50px rgba(255, 255, 255, 0.2);
+}
+.game-over-button:active {
+    transform: translateY(2px);
+}
+
+/* ********* Deck of Cards ************* */
+
+.deck-container {
+    position: absolute;
+    top: 5%;
+    right: 12.5%;
+    height: 9%;
+    width: 8%;
+
+    border-radius: 50%;
+    background: rgb(0,0,0, .2);
+}
+svg {
+    color: rgb(119, 13, 13);
+    fill: red;
+}
+.deck {
+    height: 100%;
+    display: grid;
+
+    justify-content: center;
+    align-content: center;
+}
+.deck-img {
+    height: 100%;
+    width: 100%;
+    grid: 1,1;
+}
+.deck-size {
+    position: absolute;
+    top: 8%;
+    right: 8%;
+
+    font-size: clamp(.2rem, 2vw, 1.5rem);
+    color: white;
+} 
+
+/* ********* Deck of Cards ************* */
+.darken {
+    box-shadow: 
+    inset 100vw 100vh rgb(0, 0, 0, 0.6);
+    z-index: 20;
+}

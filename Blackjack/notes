@@ -1,0 +1,59 @@
+Need to find a way to add rules to blackjack
+
+
+Need to make 1 on 1 against the dealer an Option, where both 
+the dealer and the player have a finite amount of chips. 1-1 battle take all 
+
+
+Need to edit blackjack rules paragraphs back to original lines
+
+
+// var keyFrames = `
+        // @keyframes deal${this.dealCount} {
+        //     0% {
+        //         top: 0%;
+        //         right: 0%;
+        //     }
+        //     100% {
+        //         top:65%;
+        //         right:  ${50 - (this.dealCount * 2)}%
+        //     }
+        // }`;
+        // img.style.animation = `deal${this.dealCount} 1s forwards`;
+        // img.style.keyFrames = keyFrames;
+
+
+        // let img = document.createElement("img");
+        // img.src = "images/face-down.jpg"
+        // //add a class of face-down to target later
+        // img.classList.add("face-down");
+        // this.container.appendChild(img);
+
+
+        WHY DO KEYFRAMES HAVE TO BE IN THE HTML HEAD
+
+
+
+        //5 things left
+        //slide the cards when a new one appears
+        //add in money 
+        //auto dealer hit
+        //you lose, play again
+        //cast out button
+        //menu, number of decks
+        //shuffle
+        //add deck in corner with deck size
+
+
+
+        player new round
+        
+        //add values to hand
+        // for(let i = 0; i < hand.length; i++) {
+        //     this.addToHand(hand[i], handValues[i]);
+        //     setTimeout(() => { return }, 3000);
+        // }
+        // hand.forEach((card,index) => {
+        //     setTimeout(() => { this.addToHand(card, handValues[index]); }, 2000)
+        // })
+        //set dom count

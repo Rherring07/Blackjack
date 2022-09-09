@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class = "bet-container-wrapper">
+        <section class = "bet-container">
+            <!-- Buttons Container  -->
+            <section class = "buttons">
+                <button type = "button" class = "deal-button"> Deal </button>
+            </section>
+            <section class = "bet">
+                <div class = "money-container">
+                    <p> Bank: $<span class = "money">1000</span></p>
+                </div>
+                <div class = "all-in">
+                    <button type = "button" class = "all-in-button"> All In </button>
+                </div>
+                <div class = "chips">
+                    <div class = "chip 1 white one">
+                        <p> 1 </p>
+                    </div>        
+                    <div class = "chip 5 red five">
+                        <p> 5 </p>
+                    </div>    
+                    <div class = "chip 25 green twenty-five">    
+                        <p> 25 </p>
+                    </div>    
+                    <div class = "chip 50 orange fifty">
+                        <p> 50 </p>
+                    </div>    
+                    <div class = "chip 100 black one-hundred">
+                        <p> 100 </p>                   
+                    </div>
+                    <div class = "chip 250 pink two-fifty">
+                        <p> 250 </p>
+                    </div>    
+                    <div class = "chip 500 purple five-hundred">
+                        <p> 500 </p>
+                    </div>    
+                    <div class = "chip 1000 yellow one-thousand">    
+                        <p> 1000 </p>
+                    </div>    
+                    <div class = "chip 2000 light-blue two-thousand invisible">
+                        <p> 2000 </p>
+                    </div>    
+                    <div class = "chip 5000 brown five-thousand invisible">
+                        <p> 5000 </p>                   
+                    </div>
+                </div>
+                <div class = "hidden-hero">
+        
+                </div>
+            </section>
+            <div class = "chips2">
+                <div onselectstart="return false" class = "chip2 1 white one hero">
+                    <p> 1 </p>
+                </div>        
+                <div onselectstart="return false" class = "chip2 5 red five hero">
+                    <p> 5 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 25 green twenty-five hero">    
+                    <p> 25 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 50 orange fifty hero">
+                    <p> 50 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 100 black one-hundred hero">
+                    <p> 100 </p>                   
+                </div>
+                <div onselectstart="return false" class = "chip2 250 pink two-fifty hero">
+                    <p> 250 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 500 purple five-hundred hero">
+                    <p> 500 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 1000 yellow one-thousand hero">    
+                    <p> 1000 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 2000 light-blue two-thousand invisible hero">
+                    <p> 2000 </p>
+                </div>    
+                <div onselectstart="return false" class = "chip2 5000 brown five-thousand invisible hero">
+                    <p> 5000 </p>                   
+                </div>
+            </div>  
+            <div class = "current-bet">
+                <h4> $<span class = "bet-tracker">0</span></h4>
+            </div>      
+            <button type = button class = "reset-bet-button"> Reset Bet </button>        
+                <!-- Worry about this later -->
+            <section class = "forms hidden">
+                <div class = "blackjack-info deck-info">
+                    <p class = "blackjack-deck-rules"> This game supports use of 1 - 8 decks.</p>
+                    <label>How many decks do you wish to use? <input class = "deck-input"></label>
+                    <button type = "button" class = "deck-button"> Enter </button>
+                </div>
+            </section>
+            <!-- Blackjack Game Container -->
+            <section class = "blackjack hidden">
+                <section class = "game-container">
+                    <section class = "buttons">
+                        <button type = "button" class = "new-round-button hidden"> Next Round</button>
+                    </section>
+                    <section class = "dealer-container">
+                        <div class = "dealerCount">
+                            <span class = "count"></span>
+                            <span class = "newRoundCount hidden"></span>
+                        </div>
+                        <div class = "dealer-div">
+                            <span class = "dealer-name"> dealer </span>
+                        </div>
+                        <div class = "win-blackjack ribbon hidden"> 
+                            <h4>Blackjack!</h4>
+                        </div>
+                        <div class = "win ribbon hidden">
+                            <h4>Dealer Wins!</h4>
+                        </div>
+                        <div class = "bust ribbon hidden">
+                            <h4>Bust!</h4>
+                        </div>
+                    </section>
+                    <!-- Push and bet Container -->
+                    <section class = "push">
+                        <div class = "tie ribbon hidden">
+                            <h4> Push! </h4>
+                        </div>
+                    </section>
+                <!-- Player Container -->
+                    <section class = "player-container">
+                        <h3 class = "winner"></h3>
+                        <div class = "playerCount" >
+                            <span class = "count"></span>
+                        </div>
+                        <div class = "player-div">
+                            <span class = "player-name"> player </span>
+                        </div>
+                        <div class = "player-hit-or-stand hidden">
+                            <button class = "hit-button"> Hit </button>
+                            <button class = "stand-button"> Stand </button>
+                        </div>
+                        <div class = "win-blackjack ribbon hidden"> 
+                            <h4>Blackjack!</h4>
+                        </div>
+                        <div class = "win ribbon hidden">
+                            <h4>You Win!</h4>
+                        </div>
+                        <div class = "bust ribbon hidden">
+                            <h4>Bust!</h4>
+                        </div>
+                    </section>
+                </section>
+            </section>
+
+            <div class = "game-over-container hidden">
+                <div class = "game-over"> 
+                    <h4> GAME OVER </h4>
+                    <button type = "button" class = "game-over-button">Play Again</button>
+                </div>
+            </div>
+            <div class = "deck-container"> 
+                <div class = deck>
+                    <img class = "deck-img" src = "images/deck.svg" alt = "cards">
+                </div>
+            </div>
+            <div class = "deck-size-container">
+                <h6 class = "deck-size"></h6>
+            </div>
+        </section>
+    </section>
+    <script src="onePlayer.js"></script>
+</body>
+</html>

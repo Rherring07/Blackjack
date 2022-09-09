@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Buttons Container  -->
+    <section class = "buttons">
+        <div class = "players-and-decks hidden">
+            <h3 class = "players"> Players: <span class = "num-of-players"></span></h3>
+            <h3 class = "decks"> Decks In the Shoe: <span class = "num-of-decks"></span></h3>
+            <button type = "button" class = "deal-button"> Deal! </button>
+        </div>
+        <button type = "button" class = "new-game-button"> New Game!</button>
+        <button type = "button" class = "new-round-button hidden"> Next Round!</button>
+        <button type = "button" class = "shuffle-button hidden"> Shuffle the Deck!</button>
+        <button type = "button" class = "reveal-button hidden"> Reveal Dealer's Face Down! </button>
+    </section>
+
+    <!-- Asks the user how many players and
+        Decks they wish to use  -->
+    <section class = "forms">
+        <div class = "blackjack-info player-info hidden">
+            <p class = "blackjack-player-rules"> This game supports 1 - 8 players, plus the Dealer.</p>
+            <label>How Many Players? <input type = "text" class = "player-input"></label>
+            <button type = "button" class = "player-button"> Enter </button>
+        </div>
+        <div class = "blackjack-info deck-info hidden">
+            <p class = "blackjack-deck-rules"> This game supports use of 1 - 8 decks.</p>
+            <label>How many decks do you wish to use? <input class = "deck-input"></label>
+            <button type = "button" class = "deck-button"> Enter </button>
+        </div>
+    </section>
+
+    <!-- Blackjack Game Container -->
+    <section class = "blackjack hidden">
+        <section class = "game-container">
+            <h1> Deck Size:  <span class = "deck-size"> </span> cards </h1>
+            <section class = "dealer-container">
+                <h2 class = "dealerCount hidden"> Dealer Count: <span class = "count"></span></h2>
+                <div class = "dealer-hitOrStay hidden" >
+                    <button class = hit-button> Hit </button>
+                    <button class = "stay-button hidden"> Stay </button>
+                </div>
+            </section>
+
+
+            <!-- Player Containers -->
+            <section class = "player1-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player1-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player2-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player2-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player3-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player3-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player4-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player4-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player5-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player5-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player6-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player6-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player7-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player7-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+            <section class = "player8-container hidden">
+                <h3 class = "winner"></h3>
+                <h2> Player Count:  <span class = "count"></span></h2>
+                <div class = "player8-hitOrStay hidden">
+                    <h3> Hit or Stay? </h3>
+                    <button class = hit-button> Hit </button>
+                    <button class = stay-button> Stay </button>
+                </div>
+                <div class = "player-win hidden">
+                    <h4>You Win!</h4>
+                </div>
+                <div class = "player-lose hidden">
+                    <h4>You Lose!</h4>
+                </div>
+                <div class = "player-tie hidden">
+                    <h4> Push! You Tied! </h4>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <script src="script3.js"></script>
+</body>
+</html>
